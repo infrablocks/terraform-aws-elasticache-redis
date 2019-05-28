@@ -3,5 +3,5 @@ output "subnet_group_name" {
 }
 
 output "replication_group_id" {
-  value = "${aws_elasticache_replication_group.replication_group.id}"
+  value = "${coalesce(var.replication_group_id, data.template_file.replication_group_id.rendered)}"
 }

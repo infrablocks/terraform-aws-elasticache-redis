@@ -14,8 +14,12 @@ module "elasticache_redis" {
 
   subnet_ids = "${split(",", data.terraform_remote_state.prerequisites.private_subnet_ids)}"
 
+  replication_group_id = "${var.replication_group_id}"
+
   node_count = "${var.node_count}"
   node_type = "${var.node_type}"
+
+  auth_token = "${var.auth_token}"
 
   enable_automatic_failover = "${var.enable_automatic_failover}"
   enable_encryption_at_rest = "${var.enable_encryption_at_rest}"

@@ -78,8 +78,11 @@ describe 'replication group' do
   context 'when encryption is enabled' do
     before(:all) do
       reprovision({
+          replication_group_id: ('a'..'z').to_a.shuffle[0,20].join,
           enable_encryption_at_rest: "yes",
-          enable_encryption_in_transit: "yes"
+          enable_encryption_in_transit: "yes",
+          auth_token:
+              TerraformModule.configuration.for(:harness).vars.auth_token
       })
     end
 
@@ -89,13 +92,20 @@ describe 'replication group' do
       expect(replication_group.transit_encryption_enabled)
           .to(eq(true))
     end
+
+    it 'has auth token enabled' do
+      expect(replication_group.auth_token_enabled)
+          .to(eq(true))
+    end
   end
 
   context 'when encryption is disabled' do
     before(:all) do
       reprovision({
+          replication_group_id: ('a'..'z').to_a.shuffle[0,20].join,
           enable_encryption_at_rest: "no",
-          enable_encryption_in_transit: "no"
+          enable_encryption_in_transit: "no",
+          auth_token: ""
       })
     end
 
@@ -103,6 +113,11 @@ describe 'replication group' do
       expect(replication_group.at_rest_encryption_enabled)
           .to(eq(false))
       expect(replication_group.transit_encryption_enabled)
+          .to(eq(false))
+    end
+
+    it 'has auth token disabled' do
+      expect(replication_group.auth_token_enabled)
           .to(eq(false))
     end
   end

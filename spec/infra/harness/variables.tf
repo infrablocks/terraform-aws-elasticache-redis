@@ -3,8 +3,12 @@ variable "region" {}
 variable "component" {}
 variable "deployment_identifier" {}
 
+variable "replication_group_id" {}
+
 variable "node_count" {}
 variable "node_type" {}
+
+variable "auth_token" {}
 
 variable "enable_automatic_failover" {}
 variable "enable_encryption_at_rest" {}

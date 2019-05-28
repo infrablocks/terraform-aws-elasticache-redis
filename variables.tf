@@ -1,13 +1,18 @@
 variable "subnet_ids" {
-  description = "The IDs of the subnets for elasticache nodes."
+  description = "The IDs of the subnets for elasticache redis nodes."
   type = "list"
 }
 
 variable "component" {
-  description = "The component this elasticache instance will contain."
+  description = "The component this elasticache redis instance will contain."
 }
 variable "deployment_identifier" {
-  description = "An identifier for this elasticache instance."
+  description = "An identifier for this elasticache redis instance."
+}
+
+variable "replication_group_id" {
+  description = "The ID for the replication group. Defaults to a randomly generated ID."
+  default = ""
 }
 
 variable "node_count" {
@@ -20,6 +25,11 @@ variable "node_type" {
 variable "apply_immediately" {
   description = "Whether or not to apply modifications immediately."
   default = "no"
+}
+
+variable "auth_token" {
+  description = "The authorisation token used to access the elasticache redis instance."
+  default = ""
 }
 
 variable "enable_automatic_failover" {
