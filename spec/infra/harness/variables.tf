@@ -8,6 +8,8 @@ variable "replication_group_id" {}
 variable "node_count" {}
 variable "node_type" {}
 
+variable "engine_version" {}
+
 variable "auth_token" {}
 
 variable "enable_automatic_failover" {}

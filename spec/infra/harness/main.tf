@@ -16,6 +16,8 @@ module "elasticache_redis" {
 
   replication_group_id = "${var.replication_group_id}"
 
+  engine_version = "${var.engine_version}"
+
   node_count = "${var.node_count}"
   node_type = "${var.node_type}"
 

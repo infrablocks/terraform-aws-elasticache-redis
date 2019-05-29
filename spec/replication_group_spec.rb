@@ -9,6 +9,8 @@ describe 'replication group' do
   let(:node_count) {vars.node_count}
   let(:node_type) {vars.node_type}
 
+  let(:engine_version) {vars.engine_version}
+
   let(:subnet_ids) do
     output_for(:prerequisites, 'private_subnet_ids')
         .split(',')
@@ -47,6 +49,13 @@ describe 'replication group' do
   it 'uses the specified node type' do
     expect(replication_group.cache_node_type)
         .to(eq(node_type))
+  end
+
+  it 'uses the specified engine version' do
+    clusters.each do |cluster|
+      expect(cluster.engine_version)
+          .to(eq(engine_version))
+    end
   end
 
   context 'when automatic failover enabled' do
