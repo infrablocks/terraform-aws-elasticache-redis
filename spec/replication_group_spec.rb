@@ -6,14 +6,13 @@ describe 'replication group' do
   let(:component) {vars.component}
   let(:deployment_identifier) {vars.deployment_identifier}
 
-  let(:node_count) {vars.node_count}
+  let(:node_count) {vars.node_count.to_i}
   let(:node_type) {vars.node_type}
 
   let(:engine_version) {vars.engine_version}
 
   let(:subnet_ids) do
     output_for(:prerequisites, 'private_subnet_ids')
-        .split(',')
   end
   let(:subnet_group_name) do
     output_for(:harness, 'subnet_group_name')
@@ -91,7 +90,7 @@ describe 'replication group' do
           enable_encryption_at_rest: "yes",
           enable_encryption_in_transit: "yes",
           auth_token:
-              TerraformModule.configuration.for(:harness).vars.auth_token
+              TerraformModule.configuration.for(:harness).vars[:auth_token]
       })
     end
 

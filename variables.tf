@@ -1,6 +1,6 @@
 variable "subnet_ids" {
   description = "The IDs of the subnets for elasticache redis nodes."
-  type = "list"
+  type = list(string)
 }
 
 variable "component" {

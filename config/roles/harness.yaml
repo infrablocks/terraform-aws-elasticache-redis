@@ -1,0 +1,24 @@
+---
+source_directory: "spec/infra/harness"
+state_file: "%{hiera('project_directory')}/state/harness.tfstate"
+
+vars:
+  region: "%{hiera('region')}"
+
+  component: "%{hiera('component')}"
+  deployment_identifier: "%{hiera('deployment_identifier')}"
+
+  replication_group_id: "%{hiera('replication_group_id')}"
+
+  node_count: "%{hiera('node_count')}"
+  node_type: "%{hiera('node_type')}"
+
+  engine_version: "%{hiera('engine_version')}"
+
+  enable_automatic_failover: "%{hiera('enable_automatic_failover')}"
+  enable_encryption_at_rest: "%{hiera('enable_encryption_at_rest')}"
+  enable_encryption_in_transit: "%{hiera('enable_encryption_in_transit')}"
+
+  auth_token: "%{hiera('auth_token')}"
+
+  apply_immediately: "%{hiera('apply_immediately')}"

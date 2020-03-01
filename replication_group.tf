@@ -5,8 +5,8 @@ resource "random_string" "replication_group_id_first" {
   upper = false
 
   keepers = {
-    component = "${var.component}"
-    deployment_identifier = "${var.deployment_identifier}"
+    component = var.component
+    deployment_identifier = var.deployment_identifier
   }
 }
 
@@ -16,70 +16,70 @@ resource "random_string" "replication_group_id_rest" {
   special = false
 
   keepers = {
-    component = "${var.component}"
-    deployment_identifier = "${var.deployment_identifier}"
+    component = var.component
+    deployment_identifier = var.deployment_identifier
   }
 }
 
 data "template_file" "replication_group_id" {
   template = "$${first}$${rest}"
 
-  vars {
-    first = "${random_string.replication_group_id_first.result}"
-    rest = "${random_string.replication_group_id_rest.result}"
+  vars = {
+    first = random_string.replication_group_id_first.result
+    rest = random_string.replication_group_id_rest.result
   }
 }
 
 resource "aws_elasticache_replication_group" "replication_group_with_auth" {
-  count = "${var.auth_token == "" ? 0 : 1}"
+  count = var.auth_token == "" ? 0 : 1
 
-  replication_group_id = "${coalesce(var.replication_group_id, data.template_file.replication_group_id.rendered)}"
+  replication_group_id = coalesce(var.replication_group_id, data.template_file.replication_group_id.rendered)
   replication_group_description = "elasticache-redis-replication-group-${var.component}-${var.deployment_identifier}"
 
-  engine_version = "${var.engine_version}"
+  engine_version = var.engine_version
 
-  number_cache_clusters = "${var.node_count}"
-  node_type = "${var.node_type}"
+  number_cache_clusters = var.node_count
+  node_type = var.node_type
 
-  subnet_group_name = "${aws_elasticache_subnet_group.subnet_group.name}"
+  subnet_group_name = aws_elasticache_subnet_group.subnet_group.name
 
-  auth_token = "${var.auth_token}"
+  auth_token = var.auth_token
 
-  automatic_failover_enabled = "${var.enable_automatic_failover == "yes" ? true : false}"
-  at_rest_encryption_enabled = "${var.enable_encryption_at_rest == "yes" ? true : false}"
-  transit_encryption_enabled = "${var.enable_encryption_in_transit == "yes" ? true : false}"
+  automatic_failover_enabled = var.enable_automatic_failover == "yes" ? true : false
+  at_rest_encryption_enabled = var.enable_encryption_at_rest == "yes" ? true : false
+  transit_encryption_enabled = var.enable_encryption_in_transit == "yes" ? true : false
 
-  apply_immediately = "${var.apply_immediately == "yes" ? true : false}"
+  apply_immediately = var.apply_immediately == "yes" ? true : false
 
   tags = {
     Name = "elasticache-redis-${var.component}-${var.deployment_identifier}"
-    Component = "${var.component}"
-    DeploymentIdentifier = "${var.deployment_identifier}"
+    Component = var.component
+    DeploymentIdentifier = var.deployment_identifier
   }
 }
 
 resource "aws_elasticache_replication_group" "replication_group_without_auth" {
-  count = "${var.auth_token == "" ? 1 : 0}"
+  count = var.auth_token == "" ? 1 : 0
 
-  replication_group_id = "${coalesce(var.replication_group_id, data.template_file.replication_group_id.rendered)}"
+  replication_group_id = coalesce(var.replication_group_id, data.template_file.replication_group_id.rendered)
   replication_group_description = "elasticache-redis-replication-group-${var.component}-${var.deployment_identifier}"
 
-  engine_version = "${var.engine_version}"
+  engine_version = var.engine_version
 
-  number_cache_clusters = "${var.node_count}"
-  node_type = "${var.node_type}"
+  number_cache_clusters = var.node_count
+  node_type = var.node_type
 
-  subnet_group_name = "${aws_elasticache_subnet_group.subnet_group.name}"
+  subnet_group_name = aws_elasticache_subnet_group.subnet_group.name
 
-  automatic_failover_enabled = "${var.enable_automatic_failover == "yes" ? true : false}"
-  at_rest_encryption_enabled = "${var.enable_encryption_at_rest == "yes" ? true : false}"
-  transit_encryption_enabled = "${var.enable_encryption_in_transit == "yes" ? true : false}"
+  automatic_failover_enabled = var.enable_automatic_failover == "yes" ? true : false
+  at_rest_encryption_enabled = var.enable_encryption_at_rest == "yes" ? true : false
+  transit_encryption_enabled = var.enable_encryption_in_transit == "yes" ? true : false
 
-  apply_immediately = "${var.apply_immediately == "yes" ? true : false}"
+  apply_immediately = var.apply_immediately == "yes" ? true : false
 
   tags = {
     Name = "elasticache-redis-${var.component}-${var.deployment_identifier}"
-    Component = "${var.component}"
-    DeploymentIdentifier = "${var.deployment_identifier}"
+    Component = var.component
+    DeploymentIdentifier = var.deployment_identifier
   }
 }
