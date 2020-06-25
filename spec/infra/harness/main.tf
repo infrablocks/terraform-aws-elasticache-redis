@@ -12,7 +12,10 @@ module "elasticache_redis" {
   component = var.component
   deployment_identifier = var.deployment_identifier
 
+  vpc_id = data.terraform_remote_state.prerequisites.outputs.vpc_id
   subnet_ids = data.terraform_remote_state.prerequisites.outputs.private_subnet_ids
+
+  allowed_cidrs = var.allowed_cidrs
 
   replication_group_id = var.replication_group_id
 

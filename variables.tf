@@ -1,5 +1,13 @@
+variable "vpc_id" {
+  description = "The ID of the VPC into which to deploy the elasticache redis instance."
+}
 variable "subnet_ids" {
   description = "The IDs of the subnets for elasticache redis nodes."
+  type = list(string)
+}
+
+variable "allowed_cidrs" {
+  description = "The CIDRs allowed access to the elasticache redis instance."
   type = list(string)
 }
 
@@ -8,6 +16,11 @@ variable "component" {
 }
 variable "deployment_identifier" {
   description = "An identifier for this elasticache redis instance."
+}
+
+variable "redis_port" {
+  description = "The port the elasticache redis instance should run on."
+  default = "6379"
 }
 
 variable "replication_group_id" {

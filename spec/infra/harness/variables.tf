@@ -3,6 +3,10 @@ variable "region" {}
 variable "component" {}
 variable "deployment_identifier" {}
 
+variable "allowed_cidrs" {
+  type = list(string)
+}
+
 variable "replication_group_id" {}
 
 variable "node_count" {}

@@ -8,6 +8,8 @@ vars:
   component: "%{hiera('component')}"
   deployment_identifier: "%{hiera('deployment_identifier')}"
 
+  allowed_cidrs: "%{hiera('allowed_cidrs')}"
+
   replication_group_id: "%{hiera('replication_group_id')}"
 
   node_count: "%{hiera('node_count')}"

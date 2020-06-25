@@ -39,6 +39,9 @@ resource "aws_elasticache_replication_group" "replication_group" {
   number_cache_clusters = var.node_count
   node_type = var.node_type
 
+  port = var.redis_port
+
+  security_group_ids = [aws_security_group.security_group.id]
   subnet_group_name = aws_elasticache_subnet_group.subnet_group.name
 
   auth_token = var.auth_token == "" ? null : var.auth_token
