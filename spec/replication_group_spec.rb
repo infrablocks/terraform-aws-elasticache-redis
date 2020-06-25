@@ -20,6 +20,15 @@ describe 'replication group' do
   let(:replication_group_id) do
     output_for(:harness, 'replication_group_id')
   end
+  let(:primary_endpoint_port) do
+    output_for(:harness, 'primary_endpoint')
+  end
+  let(:primary_endpoint_address) do
+    output_for(:harness, 'primary_endpoint_address')
+  end
+  let(:member_clusters) do
+    output_for(:harness, 'member_clusters')
+  end
 
   let(:replication_group) do
     elasticache_client
@@ -55,6 +64,18 @@ describe 'replication group' do
       expect(cluster.engine_version)
           .to(eq(engine_version))
     end
+  end
+
+  it 'outputs the primary endpoint address' do
+    expect(primary_endpoint_address).not_to be_nil
+  end
+
+  it 'outputs the primary_endpoint port' do
+    expect(primary_endpoint_port).not_to be_nil
+  end
+
+  it 'outputs the member clusters' do
+    expect(member_clusters).not_to be_nil
   end
 
   context 'when automatic failover enabled' do

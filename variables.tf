@@ -17,7 +17,7 @@ variable "replication_group_id" {
 
 variable "engine_version" {
   description = "The version of redis to use."
-  default = "5.0.4"
+  default = "5.0.6"
 }
 
 variable "node_count" {
