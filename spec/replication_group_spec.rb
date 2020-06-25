@@ -20,11 +20,11 @@ describe 'replication group' do
   let(:replication_group_id) do
     output_for(:harness, 'replication_group_id')
   end
-  let(:primary_endpoint_port) do
-    output_for(:harness, 'primary_endpoint')
-  end
   let(:primary_endpoint_address) do
     output_for(:harness, 'primary_endpoint_address')
+  end
+  let(:primary_endpoint_port) do
+    output_for(:harness, 'primary_endpoint_port')
   end
   let(:member_clusters) do
     output_for(:harness, 'member_clusters')
