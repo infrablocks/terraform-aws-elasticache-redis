@@ -56,13 +56,6 @@ namespace :keys do
     )
   end
 
-  namespace :cluster do
-    RakeSSH.define_key_tasks(
-      path: 'config/secrets/keys/cluster',
-      comment: 'maintainers@infrablocks.io'
-    )
-  end
-
   namespace :secrets do
     namespace :gpg do
       RakeGPG.define_generate_key_task(
@@ -81,7 +74,6 @@ namespace :secrets do
   task regenerate: %w[
     encryption:passphrase:generate
     keys:deploy:generate
-    keys:cluster:generate
     keys:secrets:generate
   ]
 end
