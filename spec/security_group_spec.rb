@@ -11,7 +11,7 @@ describe 'security group' do
   end
 
   let(:member_clusters) do
-    output_for(:harness, 'member_clusters', parse: true)
+    output_for(:harness, 'member_clusters')
   end
 
   let(:cache_clusters) do

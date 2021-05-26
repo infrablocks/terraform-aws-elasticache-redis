@@ -7,7 +7,7 @@ describe 'subnet group' do
   let(:deployment_identifier) {vars.deployment_identifier}
 
   let(:subnet_ids) do
-    output_for(:prerequisites, 'private_subnet_ids', parse: true)
+    output_for(:prerequisites, 'private_subnet_ids')
   end
   let(:subnet_group_name) do
     output_for(:harness, 'subnet_group_name')

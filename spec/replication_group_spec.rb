@@ -80,7 +80,7 @@ describe 'replication group' do
 
   context 'when automatic failover enabled' do
     before(:all) do
-      reprovision({
+      provision({
           enable_automatic_failover: "yes"
       })
     end
@@ -93,7 +93,7 @@ describe 'replication group' do
 
   context 'when automatic failover disabled' do
     before(:all) do
-      reprovision({
+      provision({
           enable_automatic_failover: "no"
       })
     end
@@ -106,7 +106,7 @@ describe 'replication group' do
 
   context 'when encryption is enabled' do
     before(:all) do
-      reprovision({
+      provision({
           replication_group_id: ('a'..'z').to_a.shuffle[0,20].join,
           enable_encryption_at_rest: "yes",
           enable_encryption_in_transit: "yes",
@@ -130,7 +130,7 @@ describe 'replication group' do
 
   context 'when encryption is disabled' do
     before(:all) do
-      reprovision({
+      provision({
           replication_group_id: ('a'..'z').to_a.shuffle[0,20].join,
           enable_encryption_at_rest: "no",
           enable_encryption_in_transit: "no",
