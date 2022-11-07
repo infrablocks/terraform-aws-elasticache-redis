@@ -7,8 +7,7 @@ data "terraform_remote_state" "prerequisites" {
 }
 
 module "elasticache_redis" {
-  # This makes absolutely no sense. I think there's a bug in terraform.
-  source = "./../../../../../../../"
+  source = "../../../.."
 
   component = var.component
   deployment_identifier = var.deployment_identifier
@@ -19,6 +18,8 @@ module "elasticache_redis" {
   allowed_cidrs = var.allowed_cidrs
 
   replication_group_id = var.replication_group_id
+
+  redis_port = var.redis_port
 
   engine_version = var.engine_version
 

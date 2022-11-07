@@ -2,42 +2,19 @@
 region: 'eu-west-2'
 
 component: 'test'
-deployment_identifier: "%{hiera('deployment_identifier')}"
+deployment_identifier: "%{hiera('seed')}"
 
-work_directory: 'build'
-configuration_directory: "%{hiera('work_directory')}/%{hiera('source_directory')}"
-
-domain_name: 'greasedscone.uk'
+domain_name: "infrablocks-elasticache-redis-%{hiera('seed')}.example"
 
 allowed_cidrs:
   - '0.0.0.0/0'
-egress_cidrs:
-  - '10.0.0.0/8'
-  - '192.168.0.0/16'
 
 vpc_cidr: '10.1.0.0/16'
 availability_zones:
   - "eu-west-2a"
   - "eu-west-2b"
 
-dependencies:
-  - "other"
-  - "stuff"
-
-public_zone_id: 'Z4Q2X3ESOZT4N'
-private_zone_id: 'Z2CDAFD23Q10HO'
-
-replication_group_id: ''
-
 node_count: 2
 node_type: 'cache.t2.micro'
 
-engine_version: '5.0.6'
-
-enable_automatic_failover: 'yes'
-enable_encryption_at_rest: 'yes'
-enable_encryption_in_transit: 'yes'
-
 auth_token: 'APVjubqGt74ruXVwfLQJTFjVH6J7T3eGkgJJcQRTFPz3urf6EGkYo7a2xAGUndp4'
-
-apply_immediately: 'yes'

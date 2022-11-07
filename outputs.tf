@@ -11,7 +11,7 @@ output "security_group_id" {
 }
 
 output "replication_group_id" {
-  value = coalesce(var.replication_group_id, data.template_file.replication_group_id.rendered)
+  value = coalesce(local.replication_group_id, local.random_replication_group_id)
 }
 
 output "primary_endpoint_address" {
@@ -19,7 +19,7 @@ output "primary_endpoint_address" {
 }
 
 output "primary_endpoint_port" {
-  value = var.redis_port
+  value = local.redis_port
 }
 
 output "member_clusters" {

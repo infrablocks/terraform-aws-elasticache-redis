@@ -1,0 +1,13 @@
+---
+configuration_directory: "%{cwd}/spec/unit/infra/root"
+state_file: "%{cwd}/state/root.tfstate"
+vars:
+  region: "%{hiera('region')}"
+
+  component: "%{hiera('component')}"
+  deployment_identifier: "%{hiera('deployment_identifier')}"
+
+  allowed_cidrs: "%{hiera('allowed_cidrs')}"
+
+  node_count: "%{hiera('node_count')}"
+  node_type: "%{hiera('node_type')}"

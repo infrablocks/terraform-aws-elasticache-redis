@@ -20,7 +20,8 @@ variable "deployment_identifier" {
 
 variable "redis_port" {
   description = "The port the elasticache redis instance should run on."
-  default = "6379"
+  type = number
+  default = 6379
 }
 
 variable "replication_group_id" {
@@ -35,6 +36,7 @@ variable "engine_version" {
 
 variable "node_count" {
   description = "The number of cache nodes to include."
+  type = number
 }
 variable "node_type" {
   description = "The instance type of the cache nodes."
