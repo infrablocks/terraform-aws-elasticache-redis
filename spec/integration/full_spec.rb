@@ -24,6 +24,7 @@ describe 'full' do
     )
   end
 
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
   describe 'replication group' do
     let(:subnet_ids) do
       output(role: :full, name: 'private_subnet_ids')
@@ -109,6 +110,7 @@ describe 'full' do
         .to(be(true))
     end
   end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers
 
   describe 'security group' do
     let(:security_group_id) do
