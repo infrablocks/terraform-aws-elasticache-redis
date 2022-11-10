@@ -39,7 +39,7 @@ describe 'subnet group' do
     it 'uses the provided subnet IDs' do
       expect(@plan)
         .to(include_resource_creation(type: 'aws_elasticache_subnet_group')
-              .with_attribute_value(:subnet_ids, subnet_ids))
+              .with_attribute_value(:subnet_ids, contain_exactly(*subnet_ids)))
     end
 
     it 'outputs the subnet group name' do
