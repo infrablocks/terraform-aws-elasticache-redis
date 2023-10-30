@@ -159,7 +159,7 @@ describe 'full' do
 
     it 'uses the specified subnet IDs' do
       expect(subnet_group.subnets.map(&:subnet_identifier))
-        .to(contain_exactly(*subnet_ids))
+        .to(match_array(subnet_ids))
     end
   end
 end
