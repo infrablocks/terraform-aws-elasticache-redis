@@ -69,7 +69,7 @@ describe 'full' do
 
     it 'uses the specified node type' do
       expect(replication_group.cache_node_type)
-        .to(eq('cache.t2.micro'))
+        .to(eq('cache.t3.micro'))
     end
 
     it 'uses the specified engine version' do
