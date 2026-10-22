@@ -10,7 +10,7 @@ module "elasticache_redis" {
   allowed_cidrs = ["10.0.0.0/8"]
 
   node_count = 2
-  node_type = "cache.t2.micro"
+  node_type = "cache.t3.micro"
 
   auth_token = var.auth_token
 }

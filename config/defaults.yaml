@@ -15,6 +15,6 @@ availability_zones:
   - "eu-west-2b"
 
 node_count: 2
-node_type: 'cache.t2.micro'
+node_type: 'cache.t3.micro'
 
 auth_token: 'APVjubqGt74ruXVwfLQJTFjVH6J7T3eGkgJJcQRTFPz3urf6EGkYo7a2xAGUndp4'
