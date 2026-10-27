@@ -31,7 +31,7 @@ describe 'replication group' do
       expect(@plan)
         .to(include_resource_creation(type: 'aws_elasticache_replication_group')
               .with_attribute_value(
-                :replication_group_description, including(component)
+                :description, including(component)
               ))
     end
 
@@ -40,7 +40,7 @@ describe 'replication group' do
       expect(@plan)
         .to(include_resource_creation(type: 'aws_elasticache_replication_group')
               .with_attribute_value(
-                :replication_group_description, including(deployment_identifier)
+                :description, including(deployment_identifier)
               ))
     end
 
@@ -53,7 +53,7 @@ describe 'replication group' do
     it 'uses the provided node count' do
       expect(@plan)
         .to(include_resource_creation(type: 'aws_elasticache_replication_group')
-              .with_attribute_value(:number_cache_clusters, node_count))
+              .with_attribute_value(:num_cache_clusters, node_count))
     end
 
     it 'uses the provided node type' do

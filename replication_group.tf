@@ -26,13 +26,13 @@ locals {
 }
 
 resource "aws_elasticache_replication_group" "replication_group" {
-  replication_group_id          = coalesce(local.replication_group_id, local.random_replication_group_id)
-  replication_group_description = "elasticache-redis-replication-group-${var.component}-${var.deployment_identifier}"
+  replication_group_id = coalesce(local.replication_group_id, local.random_replication_group_id)
+  description          = "elasticache-redis-replication-group-${var.component}-${var.deployment_identifier}"
 
   engine_version = local.engine_version
 
-  number_cache_clusters = var.node_count
-  node_type             = var.node_type
+  num_cache_clusters = var.node_count
+  node_type          = var.node_type
 
   port = local.redis_port
 
